@@ -584,6 +584,7 @@ h1 a img {
   flex-direction: column;
   justify-content: flex-end;
 }
+
 .projects_all .card::before {
   content: '';
   position: absolute;
@@ -592,6 +593,7 @@ h1 a img {
   border-radius: 16px;
   pointer-events: none;
 }
+
 .process_number {
   position: absolute;
   top: 30px;
@@ -601,6 +603,7 @@ h1 a img {
   font-size: clamp(4rem, 9vw, 8rem);
   line-height: 1;
 }
+
 .projects_all .card h4 {
   position: relative;
   max-width: 11ch;
@@ -615,11 +618,207 @@ h1 a img {
   color: rgba(233, 238, 245, .76);
   font-size: 1.04rem;
 }
+
 /* pin_scene */
 .pin_scene {
   height: 100vh;
   background: #ddd;
+  overflow: hidden;
+  z-index: 2;
+  background:
+    radial-gradient(circle at 70% 22%, rgba(242, 208, 70, .16), transparent 30%),
+    linear-gradient(180deg, #11141b 0%, #191c25 100%);
 }
+
+.pin_layer {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.pin_bg {
+  position: absolute;
+  inset: -2px;
+  background-image: url('../asset/case_gallery.png');
+  background-size: cover;
+  background-position: center;
+  transform: translateZ(0);
+  will-change: transform, filter;
+}
+.pin_overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0, 0, 0, .1), rgba(0, 0, 0, .45));
+  z-index: 1;
+  pointer-events: none;
+}
+
+.pin_copy {
+  position: absolute;
+  left: 50%;
+  top: 16%;
+  transform: translateX(-50%);
+  text-align: center;
+  max-width: 900px;
+  padding: 0 16px;
+  z-index: 3;
+}
+
+.pin_copy h2 {
+  margin: 0 0 8px;
+  font-size: clamp(28px, 4.5vw, 56px);
+  line-height: 1.05;
+}
+
+.pin_copy p {
+  margin: 0;
+  color: var(--muted)
+}
+
+.section_tag {
+  display: inline-flex;
+  margin-bottom: 18px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: rgba(242, 208, 70, .15);
+  color: var(--accent);
+  font-size: .8rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.float_wrap {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.photo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(.9);
+  width: min(40vw, 480px);
+  height: min(52vw, 640px);
+  border-radius: 18px;
+  background-size: cover;
+  background-position: center;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  filter: blur(6px);
+  will-change: transform, filter, opacity;
+}
+
+.photo_label {
+  position: absolute;
+  left: 18px;
+  right: 18px;
+  bottom: 18px;
+  z-index: 2;
+  display: inline-flex;
+  width: fit-content;
+  padding: 8px 11px;
+  border-radius: 999px;
+  background: rgba(15, 17, 21, .68);
+  color: var(--accent);
+  font-size: .78rem;
+  font-weight: 800;
+  backdrop-filter: blur(10px);
+}
+
+.p1 {
+  background-image: url(../asset/p1.png);
+}
+
+.p2 {
+  background-image: url(../asset/p2.png);
+}
+
+.p3 {
+  background-image: url(../asset/p3.png);
+}
+
+.p4 {
+  background-image: url(../asset/p4.png);
+}
+
+.p5 {
+  background-image: url(../asset/p5.png);
+}
+
+.p6 {
+  background-image: url(../asset/p6.png);
+}
+
+.photo.glitch::before,
+.photo.glitch::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: inherit;
+  background-size: inherit;
+  background-position: inherit;
+  mix-blend-mode: screen;
+  opacity: .6;
+  pointer-events: none;
+}
+
+.photo.glitch::before {
+  transform: translate(2px, 0);
+  filter: hue-rotate(30deg) saturate(1.2);
+}
+
+.photo.glitch::after {
+  transform: translate(-2px, 0);
+  filter: hue-rotate(-30deg) saturate(1.2);
+}
+
+@keyframes glitch_slices {
+  0% {
+    clip-path: inset(0 0 90% 0);
+    transform: translateX(-1px);
+  }
+
+  20% {
+    clip-path: inset(10% 0 70% 0);
+    transform: translateX(2px);
+  }
+
+  40% {
+    clip-path: inset(40% 0 40% 0);
+    transform: translateX(-2px);
+  }
+
+  60% {
+    clip-path: inset(65% 0 20% 0);
+    transform: translateX(1px);
+  }
+
+  80% {
+    clip-path: inset(80% 0 5% 0);
+    transform: translateX(-1px);
+  }
+
+  100% {
+    clip-path: inset(0 0 90% 0);
+    transform: translateX(0);
+  }
+}
+
+.photo.glitch::before {
+  animation: glitch_slices .35s steps(6) both;
+}
+
+.photo.glitch::after {
+  animation: glitch_slices .35s steps(6) reverse both;
+}
+
 
 /* horizontal_section */
 .horizontal_section {
