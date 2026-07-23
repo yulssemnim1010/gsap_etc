@@ -646,6 +646,7 @@ h1 a img {
   transform: translateZ(0);
   will-change: transform, filter;
 }
+
 .pin_overlay {
   position: absolute;
   inset: 0;
@@ -826,7 +827,182 @@ h1 a img {
   position: relative;
   overflow: hidden;
   z-index: 2;
-  background: #aaa;
+  background:
+    radial-gradient(circle at 70% 22%, rgba(242, 208, 70, .16), transparent 30%),
+    linear-gradient(180deg, #11141b 0%, #191c25 100%);
+}
+
+.track {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  gap: clamp(84px, 9vw, 150px);
+  will-change: transform;
+  padding: 0 34vw 0 8vw;
+}
+
+.track::before {
+  /* 첫 번째 케이스가 너무 빨리 시작하지 않도록 앞쪽 빈 공간을 만든다. */
+  content: '';
+  flex: 0 0 clamp(180px, 16vw, 320px);
+  height: 1px;
+  pointer-events: none;
+}
+
+.track::after {
+  /* 마지막 CASE 05까지 다 본 뒤에도 스크롤 여유가 남도록 뒤쪽 빈 공간을 만든다. */
+  content: '';
+  flex: 0 0 clamp(420px, 58vw, 920px);
+  height: 1px;
+  pointer-events: none;
+}
+
+.case_panel {
+  position: relative;
+  flex: 0 0 min(86vw, 1320px);
+  height: 74vh;
+  margin: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 40px;
+  padding: clamp(30px,5vw,72px);
+  overflow: visible;
+  color: var(--ink);
+  outline:0;
+}
+.case_copy {
+  position: relative;
+  z-index: 2;
+  flex: 0 0 42%;
+  min-width: 280px;
+}
+
+.case_kicker {
+  display: inline-flex;
+  margin-bottom: 18px;
+  color: var(--accent);
+  font-size: .84rem;
+  font-weight: 900;
+}
+
+.case_copy h2 {
+  margin: 0 0 20px;
+  max-width: 11ch;
+  font-size: clamp(2.8rem, 6vw, 6.6rem);
+  line-height: .92;
+  font-family: var(--en-lang2);
+  font-weight: 400;
+}
+
+.case_copy p {
+  max-width: 520px;
+  color: rgba(233, 238, 245, .74);
+  font-size: clamp(.96rem, 1.2vw, 1.12rem);
+}
+
+.case_meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 24px;
+  list-style: none;
+}
+
+.case_meta li {
+  padding: 0 0 6px;
+  border-radius: 0;
+  /* background: rgba(242, 208, 70, .12); */
+  background: transparent;
+  border-bottom: 1px solid rgba(242, 208, 70, .32);
+  color: var(--accent);
+  font-size: .82rem;
+  font-weight: 700;
+}
+
+.case_media {
+  /* 이미지 2~3장을 absolute로 겹치기 위한 기준 박스다. */
+  position: relative;
+  z-index: 1;
+  flex: 1 1 auto;
+  height: 100%;
+  min-width: 360px;
+ 
+}
+
+.case_image {
+  /* 한 장짜리 case_gallery 이미지를 3x3 조각처럼 잘라서 여러 이미지처럼 쓴다. */
+  position: absolute;
+  overflow: hidden;
+  border-radius: 24px;
+  background-image: url('../asset/case_gallery.png');
+  background-size: 300% 300%;
+  background-repeat: no-repeat;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, .42);
+  outline: 1px solid rgba(255, 255, 255, .12);
+  opacity: 0;
+  transform: translateY(80px) rotate(0deg);
+  will-change: transform, opacity, filter;
+}
+
+.case_image:nth-child(1) {
+  top: 8%;
+  right: 28%;
+  width: 42%;
+  height: 48%;
+  transform: translateY(80px) rotate(-7deg);
+}
+
+.case_image:nth-child(2) {
+  top: 30%;
+  right: 2%;
+  width: 48%;
+  height: 58%;
+  transform: translateY(80px) rotate(4deg);
+}
+
+.case_image:nth-child(3) {
+  left: 0;
+  bottom: 7%;
+  width: 38%;
+  height: 42%;
+  transform: translateY(80px) rotate(7deg);
+}
+
+.case_crop_01 {
+  background-position: 0 0;
+}
+
+.case_crop_02 {
+  background-position: 50% 0;
+}
+
+.case_crop_03 {
+  background-position: 100% 0;
+}
+
+.case_crop_04 {
+  background-position: 0 50%;
+}
+
+.case_crop_05 {
+  background-position: 50% 50%;
+}
+
+.case_crop_06 {
+  background-position: 100% 50%;
+}
+
+.case_crop_07 {
+  background-position: 0 100%;
+}
+
+.case_crop_08 {
+  background-position: 50% 100%;
+}
+
+.case_crop_09 {
+  background-position: 100% 100%;
 }
 
 /* stats_section */
